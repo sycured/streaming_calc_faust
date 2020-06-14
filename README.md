@@ -11,8 +11,7 @@ Bandwidth calculation for streaming server - webservice | Rewrite from my origin
 ### Inject test data
 
 ```
-./inject_bwserver.sh
-./inject_serverusagebw.sh
+./inject.sh
 ```
 
 ### Start worker
