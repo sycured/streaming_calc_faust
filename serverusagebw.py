@@ -1,8 +1,10 @@
 """Determine the amount of data used for the streaming."""
+from abc import ABCMeta
+
 from faust import App, Record
 
 
-class JsonData(Record):
+class JsonData(Record, metaclass=ABCMeta):
     """Json schema from Kafka."""
 
     nblisteners: float
@@ -12,7 +14,8 @@ class JsonData(Record):
 
 
 app = App(id='serverusagebw', broker='kafka://localhost')
-topic = app.topic('serverusagebw', value_type=JsonData)
+topic = app.topic('serverusagebw', value_type=JsonData,
+                  deleting=True, compacting=True)
 
 
 @app.agent(topic, concurrency=10)
@@ -30,3 +33,7 @@ async def compute(records):
               f'Number of days: {nbdays} \n'
               f'Number of hours by days: {nbhours}\n'
               f'Bandwidth used (GiB): {total}"')
+
+
+if __name__ == '__main__':
+    app.main()
