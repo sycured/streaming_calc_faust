@@ -13,7 +13,7 @@ app = App(id='bwserver', broker='kafka://localhost')
 topic = app.topic('bwserver', value_type=JsonData)
 
 
-@app.agent(topic)
+@app.agent(topic, concurrency=10)
 async def compute(records):
     """Receive message from Kafka, do the compute and print to stdout."""
     async for record in records:
