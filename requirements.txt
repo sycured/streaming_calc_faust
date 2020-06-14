@@ -1,0 +1,1 @@
+faust[fast,uvloop]~=1.10.4
