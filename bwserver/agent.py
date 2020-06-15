@@ -1,15 +1,7 @@
 """Determine necessary server bandwidth."""
-from abc import ABCMeta
+from faust import App
 
-from faust import App, Record
-
-
-class JsonData(Record, metaclass=ABCMeta):
-    """Json schema from Kafka."""
-
-    nblisteners: float
-    bitrate: float
-
+from models import JsonData
 
 app = App(id='bwserver', broker='kafka://localhost')
 topic = app.topic('bwserver', value_type=JsonData,

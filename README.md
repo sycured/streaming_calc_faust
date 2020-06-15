@@ -18,7 +18,9 @@ python inject.py 50
 ```
 
 ### Start worker
+
+#### Standalone
 ```
-python bwserver.py -L uvloop worker -l info -p 9001
-python serverusagebw.py -L uvloop worker -l info -p 9002
+python bwserver/agent.py -L uvloop worker -l info -p 9001
+python serverusagebw/agent.py -L uvloop worker -l info -p 9002
 ```
