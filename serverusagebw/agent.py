@@ -1,9 +1,14 @@
 """Determine the amount of data used for the streaming."""
+from os import getenv
+
 from faust import App
 
 from models import JsonData
 
-app = App(id='serverusagebw', broker='kafka://localhost')
+app = App(id='serverusagebw', broker=getenv(key='KAFKA_ADDR',
+                                            default='kafka://localhost'
+                                            )
+          )
 topic = app.topic('serverusagebw', value_type=JsonData,
                   deleting=True, compacting=True)
 

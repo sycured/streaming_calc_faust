@@ -1,5 +1,6 @@
 """Inject test data."""
 from json import dumps
+from os import getenv
 from random import randrange, uniform
 from sys import argv
 
@@ -23,7 +24,9 @@ def conn_kafka_producer():
     _producer = None
     try:
         _producer = KafkaProducer(
-            bootstrap_servers='localhost:9092',
+            bootstrap_servers=getenv(key='KAFKA_ADDR',
+                                     default='localhost:9092'
+                                     ),
             value_serializer=lambda v: dumps(v).encode('utf-8')
         )
     except Exception as e:

@@ -1,9 +1,14 @@
 """Determine necessary server bandwidth."""
+from os import getenv
+
 from faust import App
 
 from models import JsonData
 
-app = App(id='bwserver', broker='kafka://localhost')
+app = App(id='bwserver', broker=getenv(key='KAFKA_ADDR',
+                                       default='kafka://localhost'
+                                       )
+          )
 topic = app.topic('bwserver', value_type=JsonData,
                   deleting=True, compacting=True)
 
