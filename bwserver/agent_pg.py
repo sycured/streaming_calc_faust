@@ -2,6 +2,7 @@
 from os import getenv
 
 from asyncpgsa import create_pool
+
 from faust import App
 
 from models import JsonData
@@ -22,7 +23,7 @@ async def compute(records):
         nblisteners = record.nblisteners
         bitrate = record.bitrate
         total = nblisteners * bitrate * 1000 / 1024
-        insert = f"insert into bwserver (nblisteners, bitrate, result) " \
+        insert = f'insert into bwserver (nblisteners, bitrate, result) ' \
                  f"VALUES ('{nblisteners}', '{bitrate}', '{total}');"
         await pool.execute(insert)
 

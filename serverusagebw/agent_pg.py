@@ -2,6 +2,7 @@
 from os import getenv
 
 from asyncpgsa import create_pool
+
 from faust import App
 
 from models import JsonData
@@ -25,10 +26,10 @@ async def compute(records):
         nbhours = record.nbhours
         total = (nbdays * nbhours * 3600 * bitrate * 1000
                  / 8 * nblisteners / 1024 / 1024)
-        insert = f"insert into serverusagebw (nblisteners, bitrate, nbdays, nbhours, result) " \
-                 f"VALUES ('{nblisteners}', '{bitrate}', '{nbdays}', '{nbhours}' ,'{total}');"
+        insert = f'insert into serverusagebw (nblisteners, bitrate, ' \
+                 f"nbdays, nbhours, result) VALUES ('{nblisteners}', " \
+                 f"'{bitrate}', '{nbdays}', '{nbhours}' ,'{total}');"
         await pool.execute(insert)
-
 
 
 if __name__ == '__main__':
