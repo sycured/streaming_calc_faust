@@ -1,2 +1,5 @@
 faust[fast,uvloop]
 kafka-python
+asyncpgsa
+uvloop
+asyncio

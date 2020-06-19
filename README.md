@@ -33,3 +33,20 @@ python inject.py 50
 python bwserver/agent.py -L uvloop worker -l info -p 9001
 python serverusagebw/agent.py -L uvloop worker -l info -p 9002
 ```
+
+#### PostgreSQL version
+##### environment variable
+```
+PG_ADDR='postgresql://toto:titi@localhost:5432/titi'
+```
+
+##### create tables
+```
+python setup_db.py
+```
+
+##### start worker
+```
+python bwserver/agent_pg.py -L uvloop worker -l info -p 9001
+python serverusagebw/agent_pg.py -L uvloop worker -l info -p 9002
+```
