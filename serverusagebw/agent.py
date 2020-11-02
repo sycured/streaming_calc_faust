@@ -21,8 +21,7 @@ async def compute(records):
         bitrate = record.bitrate
         nbdays = record.nbdays
         nbhours = record.nbhours
-        total = (nbdays * nbhours * 3600 * bitrate * 1000
-                 / 8 * nblisteners / 1024 / 1024)
+        total = (28125 * nbdays * nbhours * bitrate * nblisteners / 65536)
         print(f'"Number of listeners: {nblisteners}\n'
               f'Bitrate (kb/s): {bitrate}\n'
               f'Number of days: {nbdays} \n'

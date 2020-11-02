@@ -24,8 +24,7 @@ async def compute(records):
         bitrate = record.bitrate
         nbdays = record.nbdays
         nbhours = record.nbhours
-        total = (nbdays * nbhours * 3600 * bitrate * 1000
-                 / 8 * nblisteners / 1024 / 1024)
+        total = (28125 * nbdays * nbhours * bitrate * nblisteners / 65536)
         insert = f'insert into serverusagebw (nblisteners, bitrate, ' \
                  f"nbdays, nbhours, result) VALUES ('{nblisteners}', " \
                  f"'{bitrate}', '{nbdays}', '{nbhours}' ,'{total}');"
