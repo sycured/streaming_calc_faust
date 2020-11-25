@@ -19,9 +19,8 @@ async def compute(records):
     async for record in records:
         nblisteners = record.nblisteners
         bitrate = record.bitrate
-        total = 125 * nblisteners * bitrate / 128
         print(f'Number of listeners: {nblisteners}\nBitrate (kb/s): {bitrate}'
-              f'\nServer bandwidth (Mib/s): {total}')
+              f'\nServer bandwidth (Mib/s): {125 * nblisteners * bitrate / 128}')
 
 
 if __name__ == '__main__':

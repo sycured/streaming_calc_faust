@@ -21,12 +21,12 @@ async def compute(records):
         bitrate = record.bitrate
         nbdays = record.nbdays
         nbhours = record.nbhours
-        total = (28125 * nbdays * nbhours * bitrate * nblisteners / 65536)
         print(f'"Number of listeners: {nblisteners}\n'
               f'Bitrate (kb/s): {bitrate}\n'
               f'Number of days: {nbdays} \n'
               f'Number of hours by days: {nbhours}\n'
-              f'Bandwidth used (GiB): {total}"')
+              f'Bandwidth used (GiB): '
+              f'{28125 * nbdays * nbhours * bitrate * nblisteners / 65536}"')
 
 
 if __name__ == '__main__':

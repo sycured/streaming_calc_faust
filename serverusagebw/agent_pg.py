@@ -24,10 +24,11 @@ async def compute(records):
         bitrate = record.bitrate
         nbdays = record.nbdays
         nbhours = record.nbhours
-        total = (28125 * nbdays * nbhours * bitrate * nblisteners / 65536)
         insert = f'insert into serverusagebw (nblisteners, bitrate, ' \
                  f"nbdays, nbhours, result) VALUES ('{nblisteners}', " \
-                 f"'{bitrate}', '{nbdays}', '{nbhours}' ,'{total}');"
+                 f"'{bitrate}', '{nbdays}', '{nbhours}', " \
+                 f"'{28125 * nbdays * nbhours * bitrate * nblisteners / 65536}"\
+                 f"');"
         await pool.execute(insert)
 
 

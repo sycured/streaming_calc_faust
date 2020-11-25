@@ -22,9 +22,9 @@ async def compute(records):
     async for record in records:
         nblisteners = record.nblisteners
         bitrate = record.bitrate
-        total = 125 * nblisteners * bitrate / 128
         insert = f'insert into bwserver (nblisteners, bitrate, result) ' \
-                 f"VALUES ('{nblisteners}', '{bitrate}', '{total}');"
+                 f"VALUES ('{nblisteners}', '{bitrate}', " \
+                 f"'{125 * nblisteners * bitrate / 128}');"
         await pool.execute(insert)
 
 
